@@ -4,36 +4,53 @@
 
 class Buildings
 {
-  /*Cell[] neighbors;
+  final static int TYPE_BUILDING_DEFAULT = 0;
+  final static int TYPE_BUILDING_1 = 1;
+  final static int TYPE_BUILDING_2 = 2;
+  final static int TYPE_BUILDING_3 = 3;
+  final static int TYPE_BUILDING_4 = 4;
+  final static int TYPE_BUILDING_5 = 5;
   
-  float x;
-  float w;
-  float vitesse;
+  Mamie mamie;
+  
+  PVector position;
+  PVector size;
+  PVector vitesse;
+  
+  int type;
+ 
   
   Buildings()
-  {
-    this.vitesse = 1;
+  {   
     init();
   }
-
+  Buildings(Mamie h_mamie)
+  {   
+    mamie = h_mamie;
+    init();
+  }
   void init()
   {
-    state = statePrevious = stateNext = 0;
-    timeStart = millis();
-    isActive = true;
+     float positionXCal = mamie.position.x + width;
+     this.position = new PVector(positionXCal, height -400);
+     this.vitesse = new PVector(0,0);
+     this.size = new PVector(75,150);
+     println("À la création la position de mamie "+mamie.position.x);
   }
-
-  void update()
+  void show(){
+    fill(125);
+    rect(this.position.x, this.position.y, this.size.x,this.size.y);
+  }
+  boolean offscreen()
   {
-    
+    if(this.position.x == 600 )
+    {
+      println("Atteint edges");
+      return true;
+    }
+    else
+    {
+      return false;
+    }
   }
-  void render(){
-    fill(255);
-    rect();
-  }
-
-  void print(String tag)
-  {
-    println("cell " + tag + " (" + indexX + " " + indexY + " " + positionX + " " + positionY + " " + state + ")");
-  }*/
 }

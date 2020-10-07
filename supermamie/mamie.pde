@@ -4,6 +4,8 @@ class Mamie{
 PVector position;
 PVector velocity;
 PVector acceleration;
+PVector size;
+
 float startPosition;
 Mamie()
   {
@@ -12,10 +14,10 @@ Mamie()
   }
   void init()
  {
-  
    this.position = new PVector(this.startPosition,height);
    this.velocity = new PVector(1,0);
    this.acceleration = new PVector(0,0);
+   this.size = new PVector(75,150);
  }
  void update()
  {
@@ -36,7 +38,7 @@ Mamie()
  {
    fill(255);
    stroke(255);
-   rect(this.position.x, this.position.y -155, 75,150);
+   rect(this.position.x, this.position.y - this.size.y, this.size.x,this.size.y);
  }
  void edges()
  {

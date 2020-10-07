@@ -20,7 +20,7 @@ void setup()
    in = new AudioIn(this, 0);
    in.start();
    amp.input(in);
-   
+    
    environnement = new Environnement();
    mamie = new Mamie();
    cellules = new Cellules();
@@ -29,8 +29,11 @@ void setup()
 void draw()
 {
   background(51);
-  translate(-mamie.position.x + mamie.startPosition,0);
+  translate(-mamie.position.x + mamie.startPosition,0);  
   
+  //Générer et mettre à jour l'environnement
+  environnement.ground(mamie.position);
+  environnement.backgroundBuildings(mamie);
   
   //Générer et mettre à jour Mamie
   PVector gravity = new PVector(0,0.1);
@@ -39,12 +42,6 @@ void draw()
   mamie.display();
   mamie.edges();
   
-  //Générer et mettre à jour l'environnement
-  environnement.ground(mamie.position);
-  environnement.background(mamie.position);
-  
-  
-  //Obstacles tempo
   rect(350,height -50,50,50);
   
   
