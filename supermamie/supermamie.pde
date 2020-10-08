@@ -2,45 +2,60 @@
 // Travail pratique 1
 
 import processing.sound.*;
+
+// variables
 Amplitude amp;
 AudioIn in;
-
-// Environnement
 Environnement environnement;
-
-//Mamie
+Gameover gameover;
 Mamie mamie;
+SoundFile jump_sound;
+SoundFile hit_sound;
+Scoreboard scoreboard;
+
+// paramètres
+int gameStatus;
+int score;
+int life;
+float framePositionX;
+PImage life_icon;
+PImage supermamie;
 PImage spritesheet;
 JSONObject spritedata;
 ArrayList<PImage> animation;
 ArrayList<Sprite> mamies;
 
-int life;
-PImage life_icon;
-SoundFile jump_sound;
-SoundFile hit_sound;
-
-//Scoreboard
-Display display;
-int score;
-
 void setup()
 {
    size(800, 600);
+   //Déclaration des valeurs
+   framePositionX = 0;
+   gameStatus = 1;
+   life = 3;
+   score = 0;
    
-   //Initialisation de la capture du microphone
+   //Instanciation de la capture du microphone
    amp = new Amplitude(this);
    in = new AudioIn(this, 0);
    in.start();
    amp.input(in);
-   //Initialisation de l'environnement
+   //Instanciation de l'environnement
    environnement = new Environnement();
-   //Initialisation de Mamie
+   //Instanciation de Gameover
+   gameover = new Gameover();
+   //Instanciation de Mamie
    mamie = new Mamie();
-   life = 3;
-   // Image pour les vies
-   life_icon = loadImage("../assets/img/life_icon.png");
+   //Instanciation des bruits
+   jump_sound = new SoundFile(this,"../assets/sounds/jump.wav"); 
+   hit_sound = new SoundFile(this,"../assets/sounds/hit.wav");
+   //Instanciation du score
+   scoreboard = new Scoreboard();
+  
    
+   // Image GIF animé pour mamie
+   supermamie = loadImage("../assets/img/supermamie_dummy.png");
+   // Image pour les vies
+   life_icon = loadImage("../assets/img/life_icon.png");   
    //Création du array pour l'animation de la mamie.
    animation = new ArrayList<PImage>();
    //Création du array pour les sprites de la mamie.
@@ -66,18 +81,52 @@ void setup()
     }
     imageMode(CENTER);
     
-   //Initialisation des bruits
-   jump_sound = new SoundFile(this,"../assets/sounds/jump.wav"); 
-   hit_sound = new SoundFile(this,"../assets/sounds/hit.wav");
-   //Initialisation du score
-   display = new Display();
-   score = 0;
+   
 }
 void draw()
 {
   background(51);
-  translate(-mamie.position.x + mamie.startPositionX,-100);  
   
+  switch (gameStatus)
+    {
+      case 0:
+        gameStart();
+        break;
+      case 1:
+        gameOn();
+        break;
+      case 2:
+        gameOver();
+        break;
+      case 3:
+        gameWin();
+        break;
+    }
+  
+
+}
+void keyPressed(){
+ if(key ==' ')
+ {
+   if(mamie.position.y == height)
+   {
+     mamie.jump();
+     jump_sound.play();
+   }
+ }
+}
+//fonction pour le menu de départ
+void gameStart()
+{
+  
+}
+//fonction pour partir le jeu
+void gameOn()
+{   
+  //Variable utiliser pour retrouver le position du frame
+  framePositionX = mamie.position.x + mamie.startPositionX;
+  
+  translate(-mamie.position.x + mamie.startPositionX,-100);    
   //Générer et mettre à jour l'environnement
   environnement.ground(mamie.position);
   environnement.backgroundBuildings(mamie);
@@ -96,12 +145,12 @@ void draw()
   environnement.generateCells(mamie);
   
   //Générer et afficher le score
-  display.showDisplay();
-  display.updateDisplay();
+  scoreboard.showDisplay();
+  scoreboard.updateDisplay();
   
   //Faire sauter mamie par clappement des mains
   float vol = amp.analyze();
-  if(vol >0.01)
+  if(vol >0.05)
   {
     if(mamie.position.y == height)
     {
@@ -109,16 +158,12 @@ void draw()
     }
   }
   score++;
-  println("Score " + score);
 }
-void keyPressed(){
- if(key ==' ')
- {
-   if(mamie.position.y == height)
-   {
-     mamie.jump();
-     jump_sound.play();
-   }
- }
+//fonction lorsque le joueur a perdu ces 3 vies
+void gameOver(){
+  gameover.showGameOver();
+}
+//fonction lorsque le joueur a atteind le score mettant fin au jeu
+void gameWin(){
 
 }

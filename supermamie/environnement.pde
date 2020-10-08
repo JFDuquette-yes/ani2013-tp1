@@ -23,7 +23,7 @@ void init()
    mamie= new Mamie();
 }
  void ground(PVector mamiePosition)
- {
+ { 
    fill(255);
    stroke(255);
    line(0, height -5, mamiePosition.x + width, height -5);
@@ -66,6 +66,10 @@ void init()
      if(cellule.contact() || cellule.offscreen())
      {
        cellules.remove(cellule);
+       if(life == 0)
+      {
+        gameStatus = 2;
+      }
      }
    }
  }

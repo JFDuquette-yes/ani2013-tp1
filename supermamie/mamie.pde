@@ -20,7 +20,7 @@ Mamie()
    this.position = new PVector(this.startPositionX,startPositionY);
    this.velocity = new PVector(2,0);
    this.acceleration = new PVector(0,0);
-   this.size = new PVector(75,150);
+   this.size = new PVector(89,150);
   
 
  }
@@ -45,7 +45,8 @@ Mamie()
    fill(255);
    stroke(255);
    //mamies.add(new Sprite(animation, this.position.x, this.position.y, 0));
-   rect(this.position.x, this.position.y - this.size.y, this.size.x, this.size.y);
+   //rect(this.position.x, this.position.y - this.size.y, this.size.x, this.size.y);
+   image(supermamie, this.position.x, this.position.y-this.size.y,this.size.x, this.size.y); 
  }
  void edges()
  {

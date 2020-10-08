@@ -11,12 +11,15 @@ class Buildings
   final static int TYPE_BUILDING_4 = 4;
   final static int TYPE_BUILDING_5 = 5;
   
-  Mamie mamie;
-  
+  // paramètres
+  int type;
   PVector position;
   PVector size;
   
-  int type;
+  // variables
+  Mamie mamie;
+  
+ 
  
   
   Buildings()

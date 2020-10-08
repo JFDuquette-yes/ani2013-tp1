@@ -22,7 +22,7 @@ class Cellules
   void init()
   {
      float positionXCal = mamie.position.x + width;
-     this.position = new PVector(positionXCal, height - random(50,150));
+     this.position = new PVector(positionXCal, height - random(100,150));
      this.vitesse = new PVector(-0.5,0);
      this.size = new PVector(50,50);
      println("À la création la position de mamie "+mamie.position.x);
@@ -35,12 +35,10 @@ class Cellules
     
     this.position.add(this.vitesse);
   }
+  //fonction pour capturer le contact des cellules sur mamie
   boolean contact()
   {
-    
-    println("CELL "+ this.position.x+ " "+this.position.y);
-    println("Mamie "+ mamie.position.x+ " "+mamie.position.y);
-    if(this.position.x > mamie.position.x && this.position.x < mamie.position.x + mamie.size.x && this.position.y < mamie.position.y && this.position.y > mamie.position.y - mamie.size.y)
+    if(this.position.x > mamie.position.x && this.position.x < mamie.position.x + mamie.size.x - 50 && this.position.y < mamie.position.y && this.position.y > mamie.position.y - mamie.size.y)
     {
       println("CONTACT");
       hit_sound.play();
@@ -50,7 +48,7 @@ class Cellules
     else
     {
       return false;
-    }
+    }    
   }
   boolean offscreen()
   {
