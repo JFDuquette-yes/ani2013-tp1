@@ -11,6 +11,7 @@ Gameover gameover;
 Mamie mamie;
 SoundFile jump_sound;
 SoundFile hit_sound;
+//Créer game_over sound
 Scoreboard scoreboard;
 
 // paramètres
@@ -46,16 +47,18 @@ void setup()
    //Instanciation de Mamie
    mamie = new Mamie();
    //Instanciation des bruits
-   jump_sound = new SoundFile(this,"../assets/sounds/jump.wav"); 
-   hit_sound = new SoundFile(this,"../assets/sounds/hit.wav");
+   jump_sound = new SoundFile(this,"../data/sounds/jump.wav"); 
+   hit_sound = new SoundFile(this,"../data/sounds/hit.wav");
+   /// GENEVIÈVE Intancier le son game over ici
+   
    //Instanciation du score
    scoreboard = new Scoreboard();
   
    
    // Image GIF animé pour mamie
-   supermamie = loadImage("../assets/img/supermamie_dummy.png");
+   supermamie = loadImage("../data/img/supermamie_dummy.png");
    // Image pour les vies
-   life_icon = loadImage("../assets/img/life_icon.png");   
+   life_icon = loadImage("../data/img/life_icon.png");   
    //Création du array pour l'animation de la mamie.
    animation = new ArrayList<PImage>();
    //Création du array pour les sprites de la mamie.

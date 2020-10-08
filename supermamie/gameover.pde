@@ -31,6 +31,7 @@ void init()
     textSize(32);
     textAlign(LEFT, CENTER);
     text("GAME OVER", this.positionGameOverTitle.x, this.positionGameOverTitle.y);
+    //GENEVIÈVE Faire jouer le son game over
  }
  void updateTitle()
  {
