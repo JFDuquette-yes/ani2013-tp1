@@ -1,11 +1,11 @@
-PImage spritesheet;
+/*PImage spritesheet;
 JSONObject spritedata;
 
 ArrayList<PImage> animation;
 
-ArrayList<Sprite> mamies;
+ArrayList<Sprite> mamies;*/
 
-void setup() {
+/*void setup() {
   //La taille du canvas
   size(1024, 768);
   
@@ -47,4 +47,4 @@ void draw() {
   }
 
   // image(animation[frameCount % animation.length], 0, 0);
-}
+}*/

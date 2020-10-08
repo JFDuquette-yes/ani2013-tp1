@@ -1,21 +1,23 @@
 class Mamie{
-
 //params
 PVector position;
 PVector velocity;
 PVector acceleration;
 PVector size;
 
-float startPosition;
+int startPositionX;
+int startPositionY;
+
 Mamie()
   {
-    this.startPosition = 100;
+    this.startPositionX = 100;
+    this.startPositionY = 400;
     init();
   }
   void init()
  {
-   this.position = new PVector(this.startPosition,height);
-   this.velocity = new PVector(1,0);
+   this.position = new PVector(this.startPositionX,startPositionY);
+   this.velocity = new PVector(2,0);
    this.acceleration = new PVector(0,0);
    this.size = new PVector(75,150);
  }
@@ -31,8 +33,9 @@ Mamie()
  }
  void jump()
  { 
-   PVector jumpY = new PVector(0,-5);
+   PVector jumpY = new PVector(0,-10);
    applyForce(jumpY);
+   jump_sound.play();
  }
  void display()
  {

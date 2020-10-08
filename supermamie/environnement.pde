@@ -2,9 +2,12 @@ class Environnement{
 
 //params
 ArrayList<Buildings> buildings;
-Buildings[][] list;
+ArrayList<Cellules> cellules;
 Buildings building;
+Cellules cellule;
+
 Mamie mamie;
+
 
 int index;
 int count;
@@ -16,6 +19,7 @@ Environnement()
 void init()
 {
    buildings = new ArrayList<Buildings>();
+   cellules = new ArrayList<Cellules>();
    mamie= new Mamie();
 }
  void ground(PVector mamiePosition)
@@ -29,7 +33,7 @@ void init()
    count = buildings.size();
    fill(255);
    stroke(255);
-   line(0, height -250, mamie.position.x + width, height -250);
+   line(0, height -150, mamie.position.x + width, height -150);
    if(frameCount % 100 == 0)
    {
      building = new Buildings(mamie);
@@ -42,6 +46,26 @@ void init()
      if(building.offscreen())
      {
        buildings.remove(building);
+     }
+   }
+ }
+ void generateCells(Mamie mamie)
+ {
+   count = cellules.size();
+   fill(255);
+   stroke(255);
+   if(frameCount % int(random (200,250)) == 0)
+   {
+     cellule = new Cellules(mamie);
+     cellules.add(cellule);  
+   }
+   for (index = count-1; index >=0; --index)
+   {
+     cellule = cellules.get(index);
+     cellule.show();    
+     if(cellule.contact() || cellule.offscreen())
+     {
+       cellules.remove(cellule);
      }
    }
  }

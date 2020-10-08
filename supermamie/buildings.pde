@@ -15,7 +15,6 @@ class Buildings
   
   PVector position;
   PVector size;
-  PVector vitesse;
   
   int type;
  
@@ -32,10 +31,8 @@ class Buildings
   void init()
   {
      float positionXCal = mamie.position.x + width;
-     this.position = new PVector(positionXCal, height -400);
-     this.vitesse = new PVector(0,0);
+     this.position = new PVector(positionXCal, height -300);
      this.size = new PVector(75,150);
-     println("À la création la position de mamie "+mamie.position.x);
   }
   void show(){
     fill(125);
@@ -43,7 +40,7 @@ class Buildings
   }
   boolean offscreen()
   {
-    if(this.position.x == 600 )
+    if(this.position.x < mamie.position.x - 250 )
     {
       println("Atteint edges");
       return true;
