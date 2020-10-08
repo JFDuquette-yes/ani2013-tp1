@@ -10,13 +10,13 @@ Environnement environnement;
 
 //Mamie
 Mamie mamie;
-
 PImage spritesheet;
 JSONObject spritedata;
 ArrayList<PImage> animation;
 ArrayList<Sprite> mamies;
 
 int life;
+PImage life_icon;
 SoundFile jump_sound;
 SoundFile hit_sound;
 
@@ -38,6 +38,34 @@ void setup()
    //Initialisation de Mamie
    mamie = new Mamie();
    life = 3;
+   // Image pour les vies
+   life_icon = loadImage("../assets/img/life_icon.png");
+   
+   //Création du array pour l'animation de la mamie.
+   animation = new ArrayList<PImage>();
+   //Création du array pour les sprites de la mamie.
+   mamies = new ArrayList<Sprite>();
+   //Chargement du JSON et du PNG.
+   spritedata = loadJSONObject("mamie.json");
+   spritesheet = loadImage("mamie.png");
+   //Localisation des frames de la mamie dans le fichier JSON.
+   JSONArray frames = spritedata.getJSONArray("mamieFrames");
+   for (int i = 0; i < frames.size(); i++) {
+      JSONObject frame = frames.getJSONObject(i);
+      //Va chercher les valeurs de position dans le array.
+      JSONObject pos = frame.getJSONObject("position");
+      //Plus spécifiquement, les valeurs du X, du Y, du W et du H.
+      int x = pos.getInt("x");
+      int y = pos.getInt("y");
+      int w = pos.getInt("w");
+      int h = pos.getInt("h");
+      //Création de la variable img dans laquelle ont mets les informations de la spritesheet.
+      PImage img = spritesheet.get(x, y, w, h);
+      //On ajoute les valeurs à l'aimation.
+      animation.add(img);
+    }
+    imageMode(CENTER);
+    
    //Initialisation des bruits
    jump_sound = new SoundFile(this,"../assets/sounds/jump.wav"); 
    hit_sound = new SoundFile(this,"../assets/sounds/hit.wav");
@@ -60,7 +88,10 @@ void draw()
   mamie.update();
   mamie.display();
   mamie.edges();
-  
+  for (Sprite mamie: mamies) {
+    mamie.show();
+    mamie.animate();
+  }
   //Générer et mettre à jour les cellules
   environnement.generateCells(mamie);
   

@@ -1,4 +1,5 @@
 class Mamie{
+  
 //params
 PVector position;
 PVector velocity;
@@ -20,6 +21,8 @@ Mamie()
    this.velocity = new PVector(2,0);
    this.acceleration = new PVector(0,0);
    this.size = new PVector(75,150);
+  
+
  }
  void update()
  {
@@ -41,7 +44,8 @@ Mamie()
  {
    fill(255);
    stroke(255);
-   rect(this.position.x, this.position.y - this.size.y, this.size.x,this.size.y);
+   //mamies.add(new Sprite(animation, this.position.x, this.position.y, 0));
+   rect(this.position.x, this.position.y - this.size.y, this.size.x, this.size.y);
  }
  void edges()
  {
