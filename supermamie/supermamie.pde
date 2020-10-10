@@ -11,7 +11,7 @@ Gameover gameover;
 Mamie mamie;
 SoundFile jump_sound;
 SoundFile hit_sound;
-//Créer game_over sound
+SoundFile gameover_sound;
 Scoreboard scoreboard;
 
 // paramètres
@@ -25,6 +25,7 @@ PImage spritesheet;
 JSONObject spritedata;
 ArrayList<PImage> animation;
 ArrayList<Sprite> mamies;
+PFont typo;
 
 void setup()
 {
@@ -49,8 +50,9 @@ void setup()
    //Instanciation des bruits
    jump_sound = new SoundFile(this,"../data/sounds/jump.wav"); 
    hit_sound = new SoundFile(this,"../data/sounds/hit.wav");
-   /// GENEVIÈVE Intancier le son game over ici
-   
+   gameover_sound = new SoundFile (this, "../data/sounds/gameover.wav"); // GENEVIÈVE Intancier le son game over ici
+   // Instanciation de la font
+  typo = createFont ("LLPIXEL3.ttf",80); 
    //Instanciation du score
    scoreboard = new Scoreboard();
   
