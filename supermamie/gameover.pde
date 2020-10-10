@@ -4,6 +4,7 @@ class Gameover{
 PVector positionGameOverTitle;
 PVector velocity;
 
+
 // variable
 Mamie mamie;
 
@@ -14,6 +15,7 @@ Gameover()
 Gameover(Mamie h_mamie)
 {
     mamie = h_mamie;
+    
     init();
 }
 void init()
@@ -24,14 +26,19 @@ void init()
 }
  void showGameOver()
  { 
+    background (#AAF604);
     fill(0);
-    stroke(255);
-    rect(this.positionGameOverTitle.x, this.positionGameOverTitle.y, 200,50);
-    fill(255);
+    stroke(#47C9C8);
+    strokeWeight(8);
+    rect(150, 250, 500,125);
+    fill(#F60404);
     textSize(32);
-    textAlign(LEFT, CENTER);
+    textAlign(CENTER, CENTER);
+    textFont (typo);
     text("GAME OVER", this.positionGameOverTitle.x, this.positionGameOverTitle.y);
-    //GENEVIÈVE Faire jouer le son game over
+    // Faire jouer le son game over
+    gameover_sound.play();
+    noLoop();
  }
  void updateTitle()
  {

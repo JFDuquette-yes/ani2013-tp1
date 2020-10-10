@@ -23,12 +23,13 @@ void showDisplay()
 }
  void showScore()
  {    
-    fill(0);
-    stroke(255);
-    rect(this.positionScore.x, this.positionScore.y, 200,50);
-    fill(255);
-    textSize(32);
+    fill(#47C9C8);
+    stroke(#FFFFFF);
+    rect(this.positionScore.x, this.positionScore.y, 200,75);
+    fill(#F24E15);
+    textSize(18);
     textAlign(LEFT, CENTER);
+    textFont (typo);
     text(score, this.positionScore.x + 20, this.positionScore.y +20);
       
  }
