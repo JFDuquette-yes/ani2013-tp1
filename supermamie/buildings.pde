@@ -18,10 +18,6 @@ class Buildings
   
   // variables
   Mamie mamie;
-  
- 
- 
-  
   Buildings()
   {   
     init();

@@ -54,7 +54,7 @@ void setup()
    hit_sound = new SoundFile(this,"../data/sounds/hit.wav");
    gameover_sound = new SoundFile (this, "../data/sounds/gameover.wav"); // GENEVIÈVE Intancier le son game over ici
    // Instanciation de la font
-  typo = createFont ("LLPIXEL3.ttf",80); 
+   typo = createFont ("LLPIXEL3.ttf",80); 
    //Instanciation du score
    scoreboard = new Scoreboard();
   
