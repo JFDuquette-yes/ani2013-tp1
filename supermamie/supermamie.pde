@@ -135,7 +135,7 @@ void gameOn()
        mamie.jump();
     }
   }
-  if(score == 1000)
+  if(score == 10000)
   {
     gameStatus = 3;
   }

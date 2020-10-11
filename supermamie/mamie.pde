@@ -18,7 +18,7 @@ JSONArray frames;
 Mamie()
   {
     this.startPositionX = 100;
-    this.startPositionY = 400;
+    this.startPositionY = 600;
     init();
   }
   void init()
@@ -56,7 +56,6 @@ Mamie()
  }
  void update()
  {
-   println("Index "+index);
    if(frameCount % 12 == 0)
    {
      if(index < len)
@@ -87,10 +86,7 @@ Mamie()
  {
    fill(255);
    stroke(255);
-   println("IMAGE "+ animation.get(index));
    image(animation.get(index), this.position.x, this.position.y-this.size.y,this.size.x, this.size.y);
-   //rect(this.position.x, this.position.y - this.size.y, this.size.x, this.size.y);
-   //image(animation.get(index), this.position.x, this.position.y-this.size.y,this.size.x, this.size.y); 
  }
  void edges()
  {

@@ -11,6 +11,7 @@ Mamie mamie;
 
 int index;
 int count;
+int type;
 
 Environnement()
 {
@@ -34,14 +35,16 @@ void init()
    fill(255);
    stroke(255);
    line(0, height -150, mamie.position.x + width, height -150);
-   if(frameCount % 100 == 0)
+   if(frameCount % 200 == 0)
    {
-     building = new Buildings(mamie);
+     //Génération aléatoire du type de bâtiment à afficher avec un fonction récursive
+     generateType();
+     building = new Buildings(mamie, type);
      buildings.add(building);  
    }
    for (index = count-1; index >=0; --index)
    {
-     building = buildings.get(index);
+     building = buildings.get(index);     
      building.show();
      if(building.offscreen())
      {
@@ -71,6 +74,18 @@ void init()
         gameStatus = 2;
       }
      }
+   }
+ } 
+ void generateType()
+ {
+   int g_type = int(random(1,5));  
+   if(g_type == type)
+   {
+       generateType();
+   }
+   else
+   {
+     type = g_type;
    }
  }
 }
