@@ -32,8 +32,8 @@ Mamie()
    //Création du array pour l'animation de la mamie.
    animation = new ArrayList<PImage>();
    //Chargement du JSON et du PNG.
-   spritedata = loadJSONObject("mamie.json");
-   spritesheet = loadImage("mamie.png");
+   spritedata = loadJSONObject("../data/mamie.json");
+   spritesheet = loadImage("../data/img/mamie.png");
    //Localisation des frames de la mamie dans le fichier JSON.
    frames = spritedata.getJSONArray("mamieFrames");
    speed = 1;

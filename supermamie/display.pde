@@ -1,11 +1,11 @@
-class Scoreboard{
+class Display{
 
 //params
 PVector positionScore;
 PVector positionLife;
 PVector velocity;
 
-Scoreboard()
+Display()
 {
   init();
 }

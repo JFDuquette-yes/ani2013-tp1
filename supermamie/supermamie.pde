@@ -11,12 +11,13 @@ Environnement environnement;
 Gameover gameover;
 Gamestart gamestart;
 Gamewin gamewin;
+Scoreboard scoreboard;
 Mamie mamie;
 SoundFile jump_sound;
 SoundFile hit_sound;
 SoundFile gameover_sound;
 SoundFile gamestart_sound;
-Scoreboard scoreboard;
+Display display;
 Minim minim;
 AudioPlayer player;
 
@@ -53,7 +54,8 @@ void setup()
    gameover = new Gameover();
     //Instanciation de GameWin
    gamewin = new Gamewin();
-   
+   //Instanciation du scoreboard
+   scoreboard = new Scoreboard();
    //Instanciation de Mamie
    mamie = new Mamie();
    //Instanciation des bruits
@@ -65,7 +67,7 @@ void setup()
    // Instanciation de la font
    typo = createFont ("LLPIXEL3.ttf",80); 
    //Instanciation du score
-   scoreboard = new Scoreboard();
+   display = new Display();
   
    
    // Image GIF animé pour mamie
@@ -92,6 +94,10 @@ void draw()
       case 3:
         gameWin();
         break;
+      case 4:
+        scoreBoard();
+        break;  
+        
     }
 }
 void keyPressed(){
@@ -131,8 +137,8 @@ void gameOn()
   environnement.generateCells(mamie);
   
   //Générer et afficher le score
-  scoreboard.showDisplay();
-  scoreboard.updateDisplay();
+  display.showDisplay();
+  display.updateDisplay();
   
   //Faire sauter mamie par clappement des mains
   float vol = amp.analyze();
@@ -163,10 +169,14 @@ void gameWin(){
 void mousePressed() {
   if (gameStatus == 0) {
     if(mouseX > 270 || mouseX < 330 || mouseY > 394 || mouseY > 425){   
-      gameOn();
+      gameStatus = 1;
     }
     if(mouseX > 460 || mouseX < 540 || mouseY > 394 || mouseY > 425){     
-      //scoreboard
+      gameStatus = 4;
     }
   } 
+}
+//fonction lorsque le joueur a perdu ces 3 vies
+void scoreBoard(){
+  scoreboard.showScoreboard();
 }
