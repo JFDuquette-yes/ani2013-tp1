@@ -38,6 +38,9 @@ void init()
     text("GAME OVER", this.positionGameOverTitle.x, this.positionGameOverTitle.y);
     // Faire jouer le son game over
     gameover_sound.play();
+     //Button jouer
+    textSize(30);
+    //text("REJOUER",width/2,400);
     noLoop();
  }
  void updateTitle()

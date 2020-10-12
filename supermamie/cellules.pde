@@ -25,7 +25,6 @@ class Cellules
      this.position = new PVector(positionXCal, height - random(100,150));
      this.vitesse = new PVector(-0.5,0);
      this.size = new PVector(50,50);
-     println("À la création la position de mamie "+mamie.position.x);
   }
   void show(){
     fill(125);
@@ -40,7 +39,6 @@ class Cellules
   {
     if(this.position.x > mamie.position.x && this.position.x < mamie.position.x + mamie.size.x - 50 && this.position.y < mamie.position.y && this.position.y > mamie.position.y - mamie.size.y)
     {
-      println("CONTACT");
       hit_sound.play();
       life--;
       return true;

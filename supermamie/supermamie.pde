@@ -11,6 +11,7 @@ Environnement environnement;
 Gameover gameover;
 Gamestart gamestart;
 Gamewin gamewin;
+Demo demo;
 Scoreboard scoreboard;
 Mamie mamie;
 SoundFile jump_sound;
@@ -54,6 +55,8 @@ void setup()
    gameover = new Gameover();
     //Instanciation de GameWin
    gamewin = new Gamewin();
+   //Instanciation de Démo
+   demo = new Demo();
    //Instanciation du scoreboard
    scoreboard = new Scoreboard();
    //Instanciation de Mamie
@@ -175,6 +178,9 @@ void demo()
    demo.showDemo();
 }
 void mousePressed() {
+  println("Mouse x "+mouseX);
+  println("Mouse y "+mouseY);
+  
   if (gameStatus == 0) {
     if(mouseX > 340 && mouseX < 460 && mouseY > 290 && mouseY < 315){
       gameStatus = 1;
@@ -184,6 +190,12 @@ void mousePressed() {
     }
     if(mouseX > 340 && mouseX < 460 && mouseY > 370 && mouseY < 400){     
       gameStatus = 5;
+    }
+  } 
+  if (gameStatus == 2) {
+    println("gameStatus 2 ");
+    if(mouseX > 340 && mouseX < 460 && mouseY > 400 && mouseY < 415){
+      gameStatus = 1;
     }
   } 
 }
