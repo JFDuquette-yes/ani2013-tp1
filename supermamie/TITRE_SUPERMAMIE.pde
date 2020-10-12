@@ -1,4 +1,4 @@
-import ddf.minim.*;
+/*import ddf.minim.*;
 Minim minim;
 AudioPlayer player;
 PFont font;
@@ -41,4 +41,4 @@ for(int i = 0; i < width; i = i + 15){
   
 void mousePressed(){
   saveFrame("render.####.jpg");
-}
+}*/
