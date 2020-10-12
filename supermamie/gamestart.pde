@@ -16,13 +16,18 @@ void init()
     textFont(typo,40);
     textSize(60);
     textAlign(CENTER,CENTER);
-    text("SUPERMAMIE",width/2,250);
+    text("SUPERMAMIE",width/2,200);
     
+    fill(#FFFFFF);
     textSize(30);
-    text("play",width/2 - 100,400);
-    fill(255,0,0);
-    text("score",width/2 + 100,400);
+    //Button jouer
+    text("JOUER",width/2,300);
+    //Button démo
+    text("DÉMO",width/2,340);
+    //Button score
+    text("TOP 10",width/2,380);
     
+    fill(#F60404);
     for(int i = 0; i < width; i = i + 15){
       ellipse(i,10,10,10);
       ellipse(i,height -10,10,10);

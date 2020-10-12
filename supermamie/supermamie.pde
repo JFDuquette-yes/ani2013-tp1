@@ -95,8 +95,11 @@ void draw()
         gameWin();
         break;
       case 4:
-        scoreBoard();
+        demo();
         break;  
+      case 5:
+        scoreBoard();
+        break;
         
     }
 }
@@ -166,13 +169,21 @@ void gameOver(){
 void gameWin(){
  gamewin.showGameWin();
 }
+//fonction pour partir le jeu
+void demo()
+{
+   demo.showDemo();
+}
 void mousePressed() {
   if (gameStatus == 0) {
-    if(mouseX > 270 || mouseX < 330 || mouseY > 394 || mouseY > 425){   
+    if(mouseX > 340 && mouseX < 460 && mouseY > 290 && mouseY < 315){
       gameStatus = 1;
     }
-    if(mouseX > 460 || mouseX < 540 || mouseY > 394 || mouseY > 425){     
+    if(mouseX > 340 && mouseX < 460 && mouseY > 330 && mouseY < 355){     
       gameStatus = 4;
+    }
+    if(mouseX > 340 && mouseX < 460 && mouseY > 370 && mouseY < 400){     
+      gameStatus = 5;
     }
   } 
 }
