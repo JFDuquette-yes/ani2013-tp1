@@ -93,8 +93,6 @@ void draw()
         gameWin();
         break;
     }
-  
-
 }
 void keyPressed(){
  if(key ==' ')
