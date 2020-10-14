@@ -30,7 +30,6 @@ class Buildings
      this.positionXCal = mamie.position.x + width;  
   }
   void show(){
-     println("TYPE "+this.type);
      switch (this.type)
       {
         case 1:

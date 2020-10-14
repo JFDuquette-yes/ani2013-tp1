@@ -158,6 +158,7 @@ class Cellules
   {
     if(this.position.x > mamie.position.x && this.position.x < mamie.position.x + mamie.size.x - 50 && this.position.y < mamie.position.y && this.position.y > mamie.position.y - mamie.size.y)
     {
+      contact = 1;
       hit_sound.play();
       life--;
       return true;

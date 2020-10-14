@@ -85,8 +85,16 @@ Mamie()
  void display()
  {
    fill(255);
-   stroke(255);
+   stroke(255); 
    image(animation.get(index), this.position.x, this.position.y-this.size.y,this.size.x, this.size.y);
+   if(contact == 1)
+   {
+     filter(BLUR, 2);
+     if(frameCount % 20 == 0)
+     {
+       contact =0;
+     }
+   }
  }
  void edges()
  {

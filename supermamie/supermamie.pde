@@ -29,6 +29,7 @@ Movie DemoVideo;
 int gameStatus;
 int score;
 int life;
+int contact;
 float framePositionX;
 PImage life_icon;
 PImage supermamie;
@@ -44,6 +45,7 @@ void setup()
    gameStatus = 0;
    life = 3;
    score = 0;
+   contact=0;
    
    //Instanciation de la capture du microphone
    amp = new Amplitude(this);

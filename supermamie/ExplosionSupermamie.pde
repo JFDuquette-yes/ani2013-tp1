@@ -1,4 +1,4 @@
-//PImage img;
+/*//PImage img;
 int count = 1500;
 
 float boidRadius = 3.0f;
@@ -85,4 +85,4 @@ void fade(float decay)
   fill(0, decay);
   rect(0, 0, width, height);
 
-}
+}*/
