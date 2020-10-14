@@ -95,15 +95,15 @@ void draw()
   switch (gameStatus)
     {
       case 0:
-        //gameStart();
-       // break;
-      //case 1:
-      //  gameOn();
-       // break;
-     // case 2:
-       // gameOver();
-      //  break;
-    //  case 3:
+        gameStart();
+       break;
+      case 1:
+      gameOn();
+       break;
+     case 2:
+       gameOver();
+       break;
+    case 3:
         gameWin();
         break;
       case 4:
