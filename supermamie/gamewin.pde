@@ -24,13 +24,17 @@ void init()
 }
  void showGameWin()
  { 
-    fill(0);
-    stroke(255);
-    fill(255);
-    textSize(32);
+    background (#AAF604);
+    stroke(#47C9C8);
+    strokeWeight(8);
+    rect(85,250, 625,125);
+    fill(#F60404);
+    textSize(50);
     textAlign(CENTER, CENTER);
+    textFont(typo);
     text("FÉLICITATIONS", this.positionGameWinTitle.x, this.positionGameWinTitle.y);
-    //GENEVIÈVE Faire jouer le son game over
+    win_sound.play ();
+    noLoop();
  }
  void updateTitle()
  {

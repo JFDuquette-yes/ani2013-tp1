@@ -20,6 +20,7 @@ SoundFile jump_sound;
 SoundFile hit_sound;
 SoundFile gameover_sound;
 SoundFile gamestart_sound;
+SoundFile win_sound;
 Display display;
 Minim minim;
 AudioPlayer player;
@@ -70,6 +71,7 @@ void setup()
    jump_sound = new SoundFile(this,"../data/sounds/jump.wav"); 
    hit_sound = new SoundFile(this,"../data/sounds/hit.wav");
    gameover_sound = new SoundFile (this, "../data/sounds/gameover.wav");
+   win_sound = new SoundFile (this, "../data/sounds/win.wav");
    minim = new Minim(this);
    player = minim.loadFile("../data/sounds/fanfare2.wav");
    // Instanciation de la font
@@ -93,15 +95,15 @@ void draw()
   switch (gameStatus)
     {
       case 0:
-        gameStart();
-        break;
-      case 1:
-        gameOn();
-        break;
-      case 2:
-        gameOver();
-        break;
-      case 3:
+        //gameStart();
+       // break;
+      //case 1:
+      //  gameOn();
+       // break;
+     // case 2:
+       // gameOver();
+      //  break;
+    //  case 3:
         gameWin();
         break;
       case 4:
