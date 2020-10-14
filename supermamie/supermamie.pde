@@ -3,6 +3,8 @@
 
 import processing.sound.*;
 import ddf.minim.*;
+//Importation de la librairie vidéo de processing.
+import processing.video.*;
 
 // variables
 Amplitude amp;
@@ -21,6 +23,7 @@ SoundFile gamestart_sound;
 Display display;
 Minim minim;
 AudioPlayer player;
+Movie DemoVideo;
 
 // paramètres
 int gameStatus;
@@ -71,6 +74,8 @@ void setup()
    typo = createFont ("LLPIXEL3.ttf",80); 
    //Instanciation du score
    display = new Display();
+   //Instanciation de la vidéo pour le démo.
+   DemoVideo = new Movie(this, "../data/videos/penguin_dance.mp4");
   
    
    // Image GIF animé pour mamie
@@ -176,7 +181,21 @@ void gameWin(){
 void demo()
 {
    demo.showDemo();
+   DemoVideo.play();
+
+   image(DemoVideo, width/2, height/2, 800, 600);
+   //Retour au menu à la fin de la vidéo du tutorial.
+   if(DemoVideo.time() >= 24){
+     println("Vidéo démo terminée.");
+     gameStart();
+   }
+   
 }
+
+void movieEvent(Movie m){
+    m.read();
+  }
+  
 void mousePressed() {
   println("Mouse x "+mouseX);
   println("Mouse y "+mouseY);
