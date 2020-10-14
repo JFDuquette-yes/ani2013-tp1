@@ -90,7 +90,7 @@ Mamie()
    if(contact == 1)
    {
      filter(BLUR, 2);
-     if(frameCount % 20 == 0)
+     if(frameCount % 10 == 0)
      {
        contact =0;
      }

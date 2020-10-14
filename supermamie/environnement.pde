@@ -8,10 +8,10 @@ Cellules cellule;
 
 Mamie mamie;
 
-
 int index;
 int count;
 int type;
+color c1,c2,c3,c4;
 
 Environnement()
 {
@@ -23,11 +23,31 @@ void init()
    cellules = new ArrayList<Cellules>();
    mamie= new Mamie();
 }
- void ground(PVector mamiePosition)
+void generateEnvironnement(Mamie mamie_)
+{
+  environnement.sky(mamie_);
+  environnement.backgroundBuildings(mamie_);
+  environnement.ground(mamie_);
+  
+}
+void sky(Mamie mamie)
+{
+ 
+  //colorMode(HSB, 100);
+  c1= color (#47C9C8);
+  c2 = color(#0A3E53); 
+  for(int y = 0; y < 450; y++) {
+    float n = map(y, 0, 450, 0, 1);
+    color newc = lerpColor(c1, c2, n);
+    stroke(newc);
+    line(0, y, mamie.position.x+ width, y);
+  }
+}
+ void ground(Mamie mamie)
  { 
    fill(255);
    stroke(255);
-   line(0, height -5, mamiePosition.x + width, height -5);
+   line(0, height -5, mamie.position.x + width, height -5);
  }
  void backgroundBuildings(Mamie mamie)
  {

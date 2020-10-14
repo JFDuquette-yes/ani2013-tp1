@@ -137,8 +137,7 @@ void gameOn()
   
   translate(-mamie.position.x + mamie.startPositionX,-100);    
   //Générer et mettre à jour l'environnement
-  environnement.ground(mamie.position);
-  environnement.backgroundBuildings(mamie);
+  environnement.generateEnvironnement(mamie);
   
   //Générer et mettre à jour Mamie
   PVector gravity = new PVector(0,0.2);
