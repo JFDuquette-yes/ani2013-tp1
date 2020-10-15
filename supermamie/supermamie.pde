@@ -1,7 +1,7 @@
 // Supermamie.pde
 // Travail pratique 1
 
-import processing.sound.*;
+//import processing.sound.*;
 import ddf.minim.*;
 //Importation de la librairie vidéo de processing.
 import processing.video.*;
@@ -25,6 +25,7 @@ Display display;
 Minim minim;
 AudioPlayer player;
 Movie DemoVideo;
+ParticleSystem ps;
 
 // paramètres
 int gameStatus;
@@ -36,7 +37,7 @@ PImage life_icon;
 PImage supermamie;
 PImage spritesheet;
 PFont typo;
-
+PImage virus;
 
 void setup()
 {
@@ -80,8 +81,10 @@ void setup()
    display = new Display();
    //Instanciation de la vidéo pour le démo.
    DemoVideo = new Movie(this, "../data/videos/penguin_dance.mp4");
-  
-   
+   //Instanciation du système de particules.
+   ps = new ParticleSystem();
+   //Instanciation de l'image de virus.
+   virus = loadImage("../data/img/virus.png");
    // Image GIF animé pour mamie
    supermamie = loadImage("../data/img/supermamie_dummy.png");
    // Image pour les vies
@@ -95,7 +98,7 @@ void draw()
   switch (gameStatus)
     {
       case 0:
-        gameStart();
+      gameStart();
        break;
       case 1:
       gameOn();
