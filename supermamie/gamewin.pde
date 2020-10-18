@@ -3,7 +3,7 @@ class Gamewin{
 //params
 PVector positionGameWinTitle;
 PVector velocity;
-
+String message = "FELICITATIONS !!!";
 // variable
 Mamie mamie;
 
@@ -24,18 +24,28 @@ void init()
 }
  void showGameWin()
  { 
+   // win_sound.play ();
+    //noLoop();
+    
     background (#AAF604);
+    
+    fill(#F24E15);
     stroke(#47C9C8);
     strokeWeight(8);
-    rect(85,250, 625,125);
-    fill(#F60404);
-    textSize(50);
-    textAlign(CENTER, CENTER);
-    textFont(typo);
-    text("FÉLICITATIONS", this.positionGameWinTitle.x, this.positionGameWinTitle.y);
-    win_sound.play ();
-    noLoop();
- }
+    rect(50,220, 700,125);
+    
+    fill (random(50,255));
+    textFont(typo2);
+    int x = 72;
+    for (int i = 0; i < message.length(); i++){
+    textSize(random (45,50));
+    text(message.charAt (i), x, height/2);
+    x += textWidth (message.charAt (i));
+
+    }
+    
+   }
+    
  void updateTitle()
  {
    this.positionGameWinTitle.add(this.velocity); 

@@ -37,6 +37,7 @@ PImage life_icon;
 PImage supermamie;
 PImage spritesheet;
 PFont typo;
+PFont typo2;
 PImage virus;
 
 void setup()
@@ -77,6 +78,7 @@ void setup()
    player = minim.loadFile("../data/sounds/fanfare2.wav");
    // Instanciation de la font
    typo = createFont ("LLPIXEL3.ttf",80); 
+   typo2 = createFont ("04B_30_.ttf",50);
    //Instanciation du score
    display = new Display();
    //Instanciation de la vidéo pour le démo.
@@ -183,6 +185,9 @@ void gameOver(){
 //fonction lorsque le joueur a atteind le score mettant fin au jeu
 void gameWin(){
  gamewin.showGameWin();
+ mamie.display();
+ 
+
 }
 //fonction pour partir le jeu
 void demo()
