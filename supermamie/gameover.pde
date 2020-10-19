@@ -4,7 +4,7 @@ class Gameover{
 PVector positionGameOverTitle;
 PVector velocity;
 //
-boolean sonLoop = true;
+boolean sonLoopGameOver = true;
 
 // variable
 Mamie mamie;
@@ -24,7 +24,7 @@ void init()
     println("Frame position X: "+ framePositionX);
     this.positionGameOverTitle = new PVector(width/2, height/2);
     this.velocity = new PVector(2, 0);
-    sonLoop = true;
+    sonLoopGameOver = true;
    
 }
  void showGameOver()
@@ -41,9 +41,9 @@ void init()
     textFont (typo);
     text("GAME OVER", this.positionGameOverTitle.x, this.positionGameOverTitle.y);
     // Faire jouer le son game over qu'une seule fois.
-    if(sonLoop == true){
+    if(sonLoopGameOver == true){
       gameover_sound.play();
-      sonLoop = false;
+      sonLoopGameOver = false;
     }
      //Button jouer
     textSize(30);
