@@ -82,7 +82,7 @@ void setup()
    //Instanciation du score
    display = new Display();
    //Instanciation de la vidéo pour le démo.
-   DemoVideo = new Movie(this, "../data/videos/penguin_dance.mp4");
+   DemoVideo = new Movie(this, "../data/videos/supermamieDemo.mp4");
    //Instanciation du système de particules.
    ps = new ParticleSystem();
    //Instanciation de l'image de virus.
