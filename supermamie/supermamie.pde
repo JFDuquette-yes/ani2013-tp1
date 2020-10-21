@@ -196,7 +196,7 @@ void demo()
 
    image(DemoVideo, width/2, height/2, 800, 600);
    //Retour au menu à la fin de la vidéo du tutorial.
-   if(DemoVideo.time() >= 24){
+   if(DemoVideo.time() >= 28){
      println("Vidéo démo terminée.");
      gameStart();
    }
