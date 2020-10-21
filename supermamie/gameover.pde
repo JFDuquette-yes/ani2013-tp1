@@ -45,9 +45,15 @@ void init()
       gameover_sound.play();
       sonLoopGameOver = false;
     }
-     //Button jouer
-    textSize(30);
-    //text("REJOUER",width/2,400);
+     //Button rejouer
+    fill(0);
+    stroke (#47C9C8);
+    strokeWeight(8);
+    rect (300,390,150,50);
+    fill(#F60404);
+    textFont(typo);
+    textSize (28);
+    text("REJOUER",375,410);
  }
  
  void updateTitle()

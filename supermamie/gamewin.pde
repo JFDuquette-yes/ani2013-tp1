@@ -3,7 +3,7 @@ class Gamewin{
 //params
 PVector positionGameWinTitle;
 PVector velocity;
-String message = "FELICITATIONS !!!";
+String message = "BRAVO!!!";
 
 boolean sonLoopWin = true;
 // variable
@@ -21,7 +21,7 @@ Gamewin(Mamie h_mamie)
 void init()
 {
     println("Frame position X: "+ framePositionX);
-    //this.positionGameWinTitle = new PVector(width/2, height/2);
+    this.positionGameWinTitle = new PVector(width/2, height/2);
     this.velocity = new PVector(2, 0);
     sonLoopWin = true;
 }
@@ -30,8 +30,8 @@ void init()
     background (#AAF604);
     
     //bouton rejouer
-    fill(0);
-    stroke (#FFFFFF);
+    fill(#F24E15);
+    stroke (#47C9C8);
     strokeWeight(8);
     rect (350,400,150,50);
     fill(#FFFFFF);
@@ -39,21 +39,22 @@ void init()
     textSize (28);
     text("REJOUER",355,433);
     
+    //Rectangle Et Texte animé
     fill(#F24E15);
     stroke(#47C9C8);
     strokeWeight(8);
-    rect(50,220, 700,125);
+    rect(50,200,700,140);
     
     fill (#F24E15);
     textFont(typo);
     textSize(30);
-    text ("vous avez survécu!", 300, 200);
+    text ("vous avez survécu!", 50, 190);
 
-    fill (random(150,255));
+    fill (random(175,255));
     textFont(typo2);
-    int x = 72;
+    int x = 125;
     for (int i = 0; i < message.length(); i++){
-    textSize(random (45,50));
+    textSize(random (85,90));
     text(message.charAt (i), x, height/2);
     x += textWidth (message.charAt (i));
 
@@ -66,8 +67,8 @@ void init()
     }   
     }
     
- void updateTitle()
+void updateTitle()
  {
-  //this.positionGameWinTitle.add(this.velocity); 
+ //  this.positionGameWinTitle.add(this.velocity); 
  }
  
