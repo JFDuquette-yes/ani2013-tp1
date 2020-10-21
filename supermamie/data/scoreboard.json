@@ -7,11 +7,51 @@
   {
     "score": 600000,
     "name": "ALEX COOPER",
-    "id": 0
+    "id": 1
   },
   {
     "score": 300000,
     "name": "JOHNNY CASH",
+    "id": 2
+  },
+  {
+    "score": 200000,
+    "name": "BARY WHITE",
     "id": 3
+  },
+  {
+    "score": 100000,
+    "name": "SUPERMAN",
+    "id": 4
+  },
+  {
+    "score": 90000,
+    "name": "NAPOLEON",
+    "id": 5
+  },
+  {
+    "score": 80000,
+    "name": "ABATOR",
+    "id": 6
+  },
+  {
+    "score": 70000,
+    "name": "BOoMBO",
+    "id": 7
+  },
+  {
+    "score": 60000,
+    "name": "LEX LUTTER",
+    "id": 8
+  },
+  {
+    "score": 50000,
+    "name": "HARRY POTTER",
+    "id": 9
+  },
+  {
+    "score": 40000,
+    "name": "WONDERWOMAN",
+    "id": 10
   }
 ]}

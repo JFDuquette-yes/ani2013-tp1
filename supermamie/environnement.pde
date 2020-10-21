@@ -77,24 +77,27 @@ void sky(Mamie mamie)
    count = cellules.size();
    fill(255);
    stroke(255);
-   if(frameCount % int(random (200,250)) == 0)
-   {
-     cellule = new Cellules(mamie);
-     cellules.add(cellule);  
-   }
-   for (index = count-1; index >=0; --index)
-   {
-     cellule = cellules.get(index);
-     cellule.show();    
-     if(cellule.contact() || cellule.offscreen())
+     if(frameCount % int(random (200,250)) == 0)
      {
-       cellules.remove(cellule);
-       if(life == 0)
-      {
-        gameStatus = 2;
-      }
+       if(count <2)
+       {
+       cellule = new Cellules(mamie);
+       cellules.add(cellule);  
+       }
      }
-   }
+     for (index = count-1; index >=0; --index)
+     {
+       cellule = cellules.get(index);
+       cellule.show();    
+       if(cellule.contact() || cellule.offscreen())
+       {
+         cellules.remove(cellule);
+         if(life == 0)
+        {
+          gameStatus = 2;
+        }
+       }
+     }
  } 
  void generateType()
  {
