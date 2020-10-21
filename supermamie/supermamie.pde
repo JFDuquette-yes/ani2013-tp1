@@ -1,7 +1,7 @@
 // Supermamie.pde
 // Travail pratique 1
 
-import processing.sound.*;
+//import processing.sound.*;
 import ddf.minim.*;
 //Importation de la librairie vidéo de processing.
 import processing.video.*;
@@ -20,10 +20,12 @@ SoundFile jump_sound;
 SoundFile hit_sound;
 SoundFile gameover_sound;
 SoundFile gamestart_sound;
+SoundFile win_sound;
 Display display;
 Minim minim;
 AudioPlayer player;
 Movie DemoVideo;
+ParticleSystem ps;
 
 // paramètres
 int gameStatus;
@@ -35,7 +37,8 @@ PImage life_icon;
 PImage supermamie;
 PImage spritesheet;
 PFont typo;
-
+PFont typo2;
+PImage virus;
 
 void setup()
 {
@@ -70,16 +73,20 @@ void setup()
    jump_sound = new SoundFile(this,"../data/sounds/jump.wav"); 
    hit_sound = new SoundFile(this,"../data/sounds/hit.wav");
    gameover_sound = new SoundFile (this, "../data/sounds/gameover.wav");
+   win_sound = new SoundFile (this, "../data/sounds/win.wav");
    minim = new Minim(this);
    player = minim.loadFile("../data/sounds/fanfare2.wav");
    // Instanciation de la font
    typo = createFont ("LLPIXEL3.ttf",80); 
+   typo2 = createFont ("04B_30_.ttf",50);
    //Instanciation du score
    display = new Display();
    //Instanciation de la vidéo pour le démo.
    DemoVideo = new Movie(this, "../data/videos/penguin_dance.mp4");
-  
-   
+   //Instanciation du système de particules.
+   ps = new ParticleSystem();
+   //Instanciation de l'image de virus.
+   virus = loadImage("../data/img/virus.png");
    // Image GIF animé pour mamie
    supermamie = loadImage("../data/img/supermamie_dummy.png");
    // Image pour les vies
@@ -93,15 +100,15 @@ void draw()
   switch (gameStatus)
     {
       case 0:
-        gameStart();
-        break;
+      gameStart();
+       break;
       case 1:
-        gameOn();
-        break;
-      case 2:
-        gameOver();
-        break;
-      case 3:
+      gameOn();
+       break;
+     case 2:
+       gameOver();
+       break;
+    case 3:
         gameWin();
         break;
       case 4:
@@ -177,6 +184,9 @@ void gameOver(){
 //fonction lorsque le joueur a atteind le score mettant fin au jeu
 void gameWin(){
  gamewin.showGameWin();
+ mamie.display();
+ 
+
 }
 //fonction pour partir le jeu
 void demo()
