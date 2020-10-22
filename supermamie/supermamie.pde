@@ -48,14 +48,15 @@ AudioPlayer [] music_list = new AudioPlayer[numSounds];
 void setup()
 {
   size(800, 600);
+  strokeWeight(1);
+  tint(255, 255); 
   //Déclaration des valeurs
   framePositionX = 0;
   gameStatus = 0;
   life = 3;
   score = 0;
   contact=0;
-  strokeWeight(1);
-
+  
   //Instanciation de la capture du microphone
   amp = new Amplitude(this);
   in = new AudioIn(this, 0);
