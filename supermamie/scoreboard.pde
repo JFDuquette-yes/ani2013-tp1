@@ -21,13 +21,23 @@ void showScoreboard()
     fill(#2AAD09);
     textAlign(CENTER, CENTER);
     textFont (typo,60);
-    text("TOP 10",width/2, 100);
+    text("TOP 5",width/2, 100);
      for (int i = 0; i < scores.size(); i++) {
         JSONObject score = scores.getJSONObject(i);
         textFont (typo,30);
-        text(score.getString("name"),width/2 -100, 200 + i*30);
-        text(score.getInt("score"),width/2 +100, 200 + i*30);
+        text(score.getString("name"),width/2 -100, 175 + i*30);
+        text(score.getInt("score"),width/2 +100, 175 + i*30);
      }
+     //Button menu
+    fill(0);
+    stroke (#47C9C8);
+    strokeWeight(8);
+    rect (30,515,150,50);
+    fill(#F60404);
+    textAlign(CENTER, CENTER);
+    textFont(typo);
+    textSize (28);
+    text("< MENU",95,535);
  }
  void setScore(int score_, String name_)
  { 

@@ -13,7 +13,6 @@ Environnement environnement;
 Gameover gameover;
 Gamestart gamestart;
 Gamewin gamewin;
-Demo demo;
 Scoreboard scoreboard;
 Mamie mamie;
 Minim minim;
@@ -52,6 +51,7 @@ void setup()
    life = 3;
    score = 0;
    contact=0;
+   strokeWeight(1);
    
    //Instanciation de la capture du microphone
    amp = new Amplitude(this);
@@ -66,8 +66,6 @@ void setup()
    gameover = new Gameover();
     //Instanciation de GameWin
    gamewin = new Gamewin();
-   //Instanciation de Démo
-   demo = new Demo();
    //Instanciation du scoreboard
    scoreboard = new Scoreboard();
    //Instanciation de Mamie
@@ -122,7 +120,7 @@ void draw()
         gameWin();
         break;
       case 4:
-        demo();
+        showDemo();
         break;  
       case 5:
         scoreBoard();
@@ -197,22 +195,31 @@ void gameOver(){
 void gameWin(){
  gamewin.showGameWin();
  mamie.display();
- 
-
 }
 //fonction pour partir le jeu
-void demo()
+void showDemo()
 {
-   demo.showDemo();
-   DemoVideo.play();
-
-   image(DemoVideo, width/2, height/2, 800, 600);
-   //Retour au menu à la fin de la vidéo du tutorial.
-   if(DemoVideo.time() >= 28){
-     println("Vidéo démo terminée.");
-     gameStart();
-   }
-   
+     DemoVideo.play();
+     image(DemoVideo, width/2, height/2, 800, 600);
+     //Retour au menu à la fin de la vidéo du tutorial.
+     if(DemoVideo.time() >= 28){
+       println("Vidéo démo terminée.");
+       reset();
+     }       
+    //Button menu
+    fill(0);
+    stroke (#47C9C8);
+    strokeWeight(8);
+    rect (30,515,150,50);
+    fill(#F60404);
+    textAlign(CENTER, CENTER);
+    textFont(typo);
+    textSize (28);
+    text("< MENU",95,535);
+}
+//fonction lorsque le joueur a perdu ces 3 vies
+void scoreBoard(){
+    scoreboard.showScoreboard();
 }
 void playMusic(AudioPlayer music_to_play){
   int count = music_list.size();
@@ -231,8 +238,6 @@ void playMusic(AudioPlayer music_to_play){
   }   
   else
   {
-    println("Music pos "+music_to_play.position());
-    println("Music lenght "+music_to_play.length());
     if(music_to_play.position() > music_to_play.length() -100)
     {
       music_to_play.rewind();
@@ -240,33 +245,74 @@ void playMusic(AudioPlayer music_to_play){
     }
   }
 }
+boolean stopVideo(){
+  println("TIme "+DemoVideo.time());
+  if(DemoVideo.time() > 0)
+  {
+     DemoVideo.stop();
+     DemoVideo.jump(1);
+  }
+  return true;
+}
+boolean stopMusic(){
+  int count = music_list.size();
+  for (int index = 0; index < count; ++index)
+  {
+      music = music_list.get(index);
+      
+        music.pause();
+        music.rewind();
+  }
+  return true;
+}
+void reset()
+{
+  if(stopMusic() && stopVideo())
+  {
+   frameCount = -1;
+   gameStart();    
+  }
+}
+//Events
 void movieEvent(Movie m){
     m.read();
-  }
-  
+}  
 void mousePressed() {
   println("Mouse x "+mouseX);
   println("Mouse y "+mouseY);
-  
-  if (gameStatus == 0) {
-    if(mouseX > 340 && mouseX < 460 && mouseY > 290 && mouseY < 315){
-      gameStatus = 1;
-    }
-    if(mouseX > 340 && mouseX < 460 && mouseY > 330 && mouseY < 355){     
-      gameStatus = 4;
-    }
-    if(mouseX > 340 && mouseX < 460 && mouseY > 370 && mouseY < 400){     
-      gameStatus = 5;
+  if(stopMusic() && stopVideo())
+  {
+    switch (gameStatus)
+    {
+        case 0:
+          if(mouseX > 340 && mouseX < 460 && mouseY > 290 && mouseY < 315){
+            gameStatus = 1;
+          }
+          if(mouseX > 340 && mouseX < 460 && mouseY > 330 && mouseY < 355){     
+            gameStatus = 4;
+          }
+          if(mouseX > 340 && mouseX < 460 && mouseY > 370 && mouseY < 400){     
+            gameStatus = 5;
+          }
+         break;
+         case 2:
+          if(mouseX > 300 && mouseX < 450 && mouseY > 390 && mouseY < 440)
+          {         
+              reset();
+          }
+         break;
+         case 4:
+         if(mouseX >30 && mouseX < 180 && mouseY > 515 && mouseY < 565)
+         { 
+              reset();
+         }
+         break;
+         case 5:
+         if(mouseX >30 && mouseX < 180 && mouseY > 515 && mouseY < 565)
+         { 
+              reset();
+         }
+         break;
     }
   } 
-  if (gameStatus == 2) {
-    println("gameStatus 2 ");
-    if(mouseX > 340 && mouseX < 460 && mouseY > 400 && mouseY < 415){
-      gameStatus = 1;
-    }
-  } 
-}
-//fonction lorsque le joueur a perdu ces 3 vies
-void scoreBoard(){
-  scoreboard.showScoreboard();
 }

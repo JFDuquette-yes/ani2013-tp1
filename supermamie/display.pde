@@ -21,8 +21,8 @@ void showDisplay()
   this.showLife();
 
 }
- void showScore()
- {    
+void showScore()
+{ 
     fill(#47C9C8);
     stroke(#FFFFFF);
     rect(this.positionScore.x, this.positionScore.y, 250,50);
@@ -31,7 +31,6 @@ void showDisplay()
     textFont (typo);
     textSize(32);
     text(score, this.positionScore.x + 20, this.positionScore.y +20);
-      
  }
  void showLife()
  { 

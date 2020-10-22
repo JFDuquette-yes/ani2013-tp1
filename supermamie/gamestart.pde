@@ -14,6 +14,7 @@ void init()
 
     background(0); 
     fill(13,255,0);
+    strokeWeight(0);
     textFont(typo,40);
     textSize(60);
     textAlign(CENTER,CENTER);
@@ -26,7 +27,7 @@ void init()
     //Button démo
     text("DÉMO",width/2,340);
     //Button score
-    text("TOP 10",width/2,380);
+    text("TOP 5",width/2,380);
     
     fill(#F60404);
     for(int i = 0; i < width; i = i + 15){

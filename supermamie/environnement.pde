@@ -47,6 +47,7 @@ void sky(Mamie mamie)
  { 
    fill(255);
    stroke(255);
+   strokeWeight(1);
    line(0, height -5, mamie.position.x + width, height -5);
  }
  void backgroundBuildings(Mamie mamie)
