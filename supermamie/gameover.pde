@@ -42,7 +42,7 @@ void init()
     text("GAME OVER", this.positionGameOverTitle.x, this.positionGameOverTitle.y);
     // Faire jouer le son game over qu'une seule fois.
     if(sonLoopGameOver == true){
-      gameover_sound.play();
+      playMusic(gameover_sound);
       sonLoopGameOver = false;
     }
      //Button rejouer

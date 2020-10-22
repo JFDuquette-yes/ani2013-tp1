@@ -1,4 +1,3 @@
-import processing.sound.*;
 class Cellules
 {
   Mamie mamie;

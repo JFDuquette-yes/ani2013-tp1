@@ -1,10 +1,10 @@
 // Supermamie.pde
 // Travail pratique 1
 
-//import processing.sound.*;
-import ddf.minim.*;
 //Importation de la librairie vidéo de processing.
 import processing.video.*;
+import ddf.minim.*;
+import processing.sound.*;
 
 // variables
 Amplitude amp;
@@ -16,14 +16,14 @@ Gamewin gamewin;
 Demo demo;
 Scoreboard scoreboard;
 Mamie mamie;
+Minim minim;
 SoundFile jump_sound;
 SoundFile hit_sound;
-SoundFile gameover_sound;
-SoundFile gamestart_sound;
 SoundFile win_sound;
+AudioPlayer intro;
+AudioPlayer main_theme;
+AudioPlayer gameover_sound; 
 Display display;
-Minim minim;
-AudioPlayer player;
 Movie DemoVideo;
 ParticleSystem ps;
 
@@ -39,6 +39,9 @@ PImage spritesheet;
 PFont typo;
 PFont typo2;
 PImage virus;
+
+ArrayList<AudioPlayer> music_list;
+AudioPlayer music;
 
 void setup()
 {
@@ -69,13 +72,20 @@ void setup()
    scoreboard = new Scoreboard();
    //Instanciation de Mamie
    mamie = new Mamie();
-   //Instanciation des bruits
-   jump_sound = new SoundFile(this,"../data/sounds/jump.wav"); 
-   hit_sound = new SoundFile(this,"../data/sounds/hit.wav");
-   gameover_sound = new SoundFile (this, "../data/sounds/gameover.wav");
-   win_sound = new SoundFile (this, "../data/sounds/win.wav");
+   // Instanciation des musiques
+   music_list = new ArrayList<AudioPlayer>();
    minim = new Minim(this);
-   player = minim.loadFile("../data/sounds/fanfare2.wav");
+   jump_sound = new SoundFile(this,"/data/sounds/jump.wav"); 
+   hit_sound =  new SoundFile(this,"/data/sounds/hit.wav");
+   win_sound =  new SoundFile(this,"/data/sounds/win.wav");
+   
+   intro = minim.loadFile("/data/sounds/intro_jungle.mp3");
+   main_theme = minim.loadFile("/data/sounds/main_theme.mp3");
+   gameover_sound = minim.loadFile("/data/sounds/death_theme.mp3");
+   
+   music_list.add(intro);
+   music_list.add(main_theme);
+   music_list.add(gameover_sound);
    // Instanciation de la font
    typo = createFont ("LLPIXEL3.ttf",80); 
    typo2 = createFont ("04B_30_.ttf",50);
@@ -139,6 +149,8 @@ void gameStart()
 void gameOn()
 {   
   gameStatus = 1;
+  playMusic(main_theme);
+ 
   //Variable utiliser pour retrouver le position du frame
   framePositionX = mamie.position.x + mamie.startPositionX;
   
@@ -202,7 +214,32 @@ void demo()
    }
    
 }
-
+void playMusic(AudioPlayer music_to_play){
+  int count = music_list.size();
+  if(!music_to_play.isPlaying())
+  {
+    for (int index = 0; index < count; ++index)
+     {
+        music = music_list.get(index);
+        if(music.isPlaying())
+        {
+          music.pause();
+          music.rewind();
+        }
+     }
+     music_to_play.play();
+  }   
+  else
+  {
+    println("Music pos "+music_to_play.position());
+    println("Music lenght "+music_to_play.length());
+    if(music_to_play.position() > music_to_play.length() -100)
+    {
+      music_to_play.rewind();
+      music_to_play.play();
+    }
+  }
+}
 void movieEvent(Movie m){
     m.read();
   }

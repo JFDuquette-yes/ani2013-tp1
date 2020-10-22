@@ -10,7 +10,8 @@ void init()
 }
  void showGameStart()
  { 
-    player.play();
+    playMusic(intro);
+
     background(0); 
     fill(13,255,0);
     textFont(typo,40);
