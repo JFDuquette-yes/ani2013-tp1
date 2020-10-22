@@ -209,7 +209,6 @@ void scoreBoard() {
 }
 void playMusic( AudioPlayer[] list, int choice) { 
 
-  println("CHOICE "+choice);
   for (int idx = list.length-1; idx >=0; --idx) {
     if (idx == choice) {
       if (list[idx].position() == list[idx].length() -50)
