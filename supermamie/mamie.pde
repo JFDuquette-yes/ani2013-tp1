@@ -78,9 +78,12 @@ Mamie()
  }
  void jump()
  { 
-   PVector jumpY = new PVector(0,-10);
-   applyForce(jumpY);
-   jump_sound.play();
+   if(gameStatus == 1)
+   {
+     PVector jumpY = new PVector(0,-10);
+     applyForce(jumpY);
+     jump_sound.play();
+   }
  }
  void display()
  {

@@ -32,8 +32,6 @@ void generateEnvironnement(Mamie mamie_)
 }
 void sky(Mamie mamie)
 {
- 
-  //colorMode(HSB, 100);
   c1= color (#47C9C8);
   c2 = color(#0A3E53); 
   for(int y = 0; y < 450; y++) {

@@ -128,16 +128,6 @@ void draw()
         
     }
 }
-void keyPressed(){
- if(key ==' ')
- {
-   if(mamie.position.y == height)
-   {
-     mamie.jump();
-     jump_sound.play();
-   }
- }
-}
 //fonction pour le menu de départ
 void gameStart()
 {
@@ -193,8 +183,11 @@ void gameOver(){
 }
 //fonction lorsque le joueur a atteind le score mettant fin au jeu
 void gameWin(){
- gamewin.showGameWin();
- mamie.display();
+  if(stopMusic() && stopVideo())
+  {
+   gamewin.showGameWin();
+   mamie.display();
+  }
 }
 //fonction pour partir le jeu
 void showDemo()
@@ -259,9 +252,8 @@ boolean stopMusic(){
   for (int index = 0; index < count; ++index)
   {
       music = music_list.get(index);
-      
-        music.pause();
-        music.rewind();
+      music.pause();
+      music.rewind();
   }
   return true;
 }
@@ -276,7 +268,16 @@ void reset()
 //Events
 void movieEvent(Movie m){
     m.read();
-}  
+}
+void keyPressed(){
+ if(key ==' ')
+ {  
+     if(mamie.position.y == height)
+     {
+       mamie.jump();
+     }
+ }
+}
 void mousePressed() {
   println("Mouse x "+mouseX);
   println("Mouse y "+mouseY);
@@ -300,6 +301,12 @@ void mousePressed() {
           {         
               reset();
           }
+         break;
+         case 3:
+         if(mouseX >300 && mouseX < 460 && mouseY > 390 && mouseY < 440)
+         { 
+              reset();
+         }
          break;
          case 4:
          if(mouseX >30 && mouseX < 180 && mouseY > 515 && mouseY < 565)
