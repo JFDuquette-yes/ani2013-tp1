@@ -65,8 +65,9 @@ class Gameover {
         //Load le screen du dernier frame
         img = loadImage("/data/img/screenshot.jpg");
         image(img, width/2, height/2, 800, 600);
+        tint(255, 126); 
+        
         rectMode(CORNER);       
-
         //Génération du Boid par dessus le screenshot
         fade(1);        
         // mise à jour du système de boids
