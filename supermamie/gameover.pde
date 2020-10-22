@@ -1,65 +1,141 @@
 class Gameover{
 
 //params
-PVector positionGameOverTitle;
-PVector velocity;
-//
-boolean sonLoopGameOver = true;
+int nb_boid = 500;
+int duration = 100;
+int y = 0;
 
-// variable
-Mamie mamie;
+float boidRadius = 3.0f;
+
+float boidMaxspeed = 20.0f;
+float boidMaxforce = 0.03f;
+
+float boidThresholdSeparation = 50.0f;
+float boidThresholdCohesion = 50.0f;
+float boidThresholdAligment = 50.0f;
+
+float boidWeightSeparation = 5.00f;
+float boidWeightCohesion = 1.00f;
+float boidWeightAligment = 0.75f;
+
+boolean sonLoopGameOver;
+boolean explosionSequenceEnd;
+boolean screenShot;
+
+PImage img;
+
+PVector positionGameOverTitle;
+
+// variables
+Crowd crowd;
+Boid boid;
 
 Gameover()
 {
   init();
 }
-Gameover(Mamie h_mamie)
-{
-    mamie = h_mamie;
-    
-    init();
-}
-void init()
-{
-    println("Frame position X: "+ framePositionX);
-    this.positionGameOverTitle = new PVector(width/2, height/2);
-    this.velocity = new PVector(2, 0);
-    sonLoopGameOver = true;
-   
-}
- void showGameOver()
- { 
-    background (#AAF604);
-    fill(0);
-    ps.run();
-    stroke(#47C9C8);
-    strokeWeight(8);
-    rect(150, 250, 500,125);
-    fill(#F60404);
-    textSize(32);
-    textAlign(CENTER, CENTER);
-    textFont (typo);
-    text("GAME OVER", this.positionGameOverTitle.x, this.positionGameOverTitle.y);
-    // Faire jouer le son game over qu'une seule fois.
-    if(sonLoopGameOver == true){
-      playMusic(gameover_sound);
-      sonLoopGameOver = false;
-    }
-     //Button rejouer
-    fill(0);
-    stroke (#47C9C8);
-    strokeWeight(8);
-    rect (300,390,150,50);
-    fill(#F60404);
-    textFont(typo);
-    textSize (28);
-    text("REJOUER",375,410);
- }
- 
- void updateTitle()
+ void init()
  {
-   this.positionGameOverTitle.add(this.velocity); 
+    this.positionGameOverTitle = new PVector(width/2, height/2);
+    sonLoopGameOver = true;
+    explosionSequenceEnd = false;
+    screenShot = false;
+    // instanciation du groupe de boids
+    crowd = new Crowd();   
+     // initialisation du groupe de boids
+    for (int i = 0; i < nb_boid; i++)
+    {
+      // instanciation d'un nouveau boid
+      boid = new Boid(width / 2.0f, height / 2.0f);
+  
+      // configuration du nouveau boid
+      configuration(boid);
+  
+      // ajouter le nouveau boid au groupe de boids
+      crowd.add(boid);
+    }
+   
  }
+ void showGameOver()
+ {       
+    if(!explosionSequenceEnd)
+    {
+      if(y != duration)
+      {
+             
+        //Load le screen du dernier frame
+        img = loadImage("/data/img/screenshot.jpg");
+        image(img, width/2, height/2, 800,600);
+        rectMode(CORNER);       
+         
+        //Génération du Boid par dessus le screenshot
+        fade(1);        
+        // mise à jour du système de boids
+        crowd.update();  
+        // rendu du système de boids
+        crowd.render();
+        y++;
+      }
+      else
+      {
+        explosionSequenceEnd =true;
+        y=0;
+      }
+    }
+    if(explosionSequenceEnd)
+    {
+      background (#AAF604);
+      fill(0);
+      ps.run();
+      stroke(#47C9C8);
+      strokeWeight(8);
+      rect(150, 250, 500,125);
+      fill(#F60404);
+      textSize(32);
+      textAlign(CENTER, CENTER);
+      textFont (typo);
+      text("GAME OVER", this.positionGameOverTitle.x, this.positionGameOverTitle.y);
+      // Faire jouer le son game over qu'une seule fois.
+      if(sonLoopGameOver == true){
+        playMusic(gameover_sound);
+        sonLoopGameOver = false;
+      }
+       //Button rejouer
+      fill(0);
+      stroke (#47C9C8);
+      strokeWeight(8);
+      rect (300,390,150,50);
+      fill(#F60404);
+      textFont(typo);
+      textSize (28);
+      text("REJOUER",375,410);
+    }
+ } 
+ // fonction de configuration d'un nouveau boid selon les paramètres du programme
+ void configuration(Boid b)
+ {
+    // propriétés
+    b.radius = boidRadius;
+    b.maxspeed = boidMaxspeed;
+    b.maxforce = boidMaxforce;
+  
+    // valeurs des seuils des différents comportements
+    b.thresholdCohesion = boidThresholdCohesion;
+    b.thresholdAligment = boidThresholdAligment;
+    b.thresholdSeparation = boidThresholdSeparation;
+  
+    // valeurs de pondération des différents comportements
+    b.weightSeparation = boidWeightSeparation;
+    b.weightCohesion = boidWeightCohesion;
+    b.weightAligment = boidWeightAligment;
+  }
+  
+  void fade(float decay)
+  {
+    fill(0, decay);
+    rect(0, 0, width, height);
+  
+  }
 }
 
 class PVirus {

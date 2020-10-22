@@ -58,18 +58,19 @@ void setup()
    in = new AudioIn(this, 0);
    in.start();
    amp.input(in);
+   //Instanciation de Mamie
+   mamie = new Mamie();
    //Instanciation de l'environnement
    environnement = new Environnement();
     //Instanciation de GameStart
    gamestart = new Gamestart();
-   //Instanciation de Gameover
-   gameover = new Gameover();
     //Instanciation de GameWin
    gamewin = new Gamewin();
+   //Instanciation de Gameover
+   gameover = new Gameover();
    //Instanciation du scoreboard
    scoreboard = new Scoreboard();
-   //Instanciation de Mamie
-   mamie = new Mamie();
+  
    // Instanciation des musiques
    music_list = new ArrayList<AudioPlayer>();
    minim = new Minim(this);
@@ -196,7 +197,6 @@ void showDemo()
      image(DemoVideo, width/2, height/2, 800, 600);
      //Retour au menu à la fin de la vidéo du tutorial.
      if(DemoVideo.time() >= 28){
-       println("Vidéo démo terminée.");
        reset();
      }       
     //Button menu
@@ -218,7 +218,7 @@ void playMusic(AudioPlayer music_to_play){
   int count = music_list.size();
   if(!music_to_play.isPlaying())
   {
-    for (int index = 0; index < count; ++index)
+    for (int index = 0; index < count; index++)
      {
         music = music_list.get(index);
         if(music.isPlaying())
@@ -239,7 +239,6 @@ void playMusic(AudioPlayer music_to_play){
   }
 }
 boolean stopVideo(){
-  println("TIme "+DemoVideo.time());
   if(DemoVideo.time() > 0)
   {
      DemoVideo.stop();
@@ -249,7 +248,7 @@ boolean stopVideo(){
 }
 boolean stopMusic(){
   int count = music_list.size();
-  for (int index = 0; index < count; ++index)
+  for (int index = 0; index < count; index++)
   {
       music = music_list.get(index);
       music.pause();
@@ -279,8 +278,6 @@ void keyPressed(){
  }
 }
 void mousePressed() {
-  println("Mouse x "+mouseX);
-  println("Mouse y "+mouseY);
   if(stopMusic() && stopVideo())
   {
     switch (gameStatus)

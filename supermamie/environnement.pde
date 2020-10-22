@@ -93,6 +93,8 @@ void sky(Mamie mamie)
          cellules.remove(cellule);
          if(life == 0)
         {
+          //Sreenshoot
+          saveFrame("/data/img/screenshot.jpg");
           gameStatus = 2;
         }
        }

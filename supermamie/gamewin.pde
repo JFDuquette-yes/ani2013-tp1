@@ -2,7 +2,6 @@ class Gamewin{
 
 //params
 PVector positionGameWinTitle;
-PVector velocity;
 String message = "BRAVO!!!";
 
 boolean sonLoopWin = true;
@@ -22,7 +21,6 @@ void init()
 {
     println("Frame position X: "+ framePositionX);
     this.positionGameWinTitle = new PVector(width/2, height/2);
-    this.velocity = new PVector(2, 0);
     sonLoopWin = true;
 }
  void showGameWin()
