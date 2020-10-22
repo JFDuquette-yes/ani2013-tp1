@@ -31,7 +31,6 @@ class Crowd
   void add(Boid b)
   {
     system.add(b);
-    println("boid count: " + system.size());
   }
 
   // fonction qui permet de ramener les boids à l'extrémité opposée quand ils sortent de la fenêtre d'affichage

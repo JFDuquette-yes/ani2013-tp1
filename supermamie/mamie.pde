@@ -1,45 +1,45 @@
-class Mamie{
-  
-//params
-PVector position;
-PVector velocity;
-PVector acceleration;
-PVector size;
+class Mamie {
 
-int startPositionX;
-int startPositionY;
-int index;
-int len, speed;
+  //params
+  PVector position;
+  PVector velocity;
+  PVector acceleration;
+  PVector size;
 
-ArrayList<PImage> animation;
-JSONObject spritedata;
-JSONArray frames;
+  int startPositionX;
+  int startPositionY;
+  int index;
+  int len, speed;
 
-Mamie()
+  ArrayList<PImage> animation;
+  JSONObject spritedata;
+  JSONArray frames;
+
+  Mamie()
   {
     this.startPositionX = 100;
     this.startPositionY = 600;
     init();
   }
   void init()
- {
-   this.position = new PVector(this.startPositionX,startPositionY);
-   this.velocity = new PVector(2,0);
-   this.acceleration = new PVector(0,0);
-   this.size = new PVector(89,150);
-  
-   
-   //Création du array pour l'animation de la mamie.
-   animation = new ArrayList<PImage>();
-   //Chargement du JSON et du PNG.
-   spritedata = loadJSONObject("../data/mamie.json");
-   spritesheet = loadImage("../data/img/mamie.png");
-   //Localisation des frames de la mamie dans le fichier JSON.
-   frames = spritedata.getJSONArray("mamieFrames");
-   speed = 1;
-   len = frames.size() - 1;
-   imageMode(CENTER);
-   for (int i = 0; i < frames.size(); i++) {
+  {
+    this.position = new PVector(this.startPositionX, startPositionY);
+    this.velocity = new PVector(2, 0);
+    this.acceleration = new PVector(0, 0);
+    this.size = new PVector(89, 150);
+
+
+    //Création du array pour l'animation de la mamie.
+    animation = new ArrayList<PImage>();
+    //Chargement du JSON et du PNG.
+    spritedata = loadJSONObject("../data/mamie.json");
+    spritesheet = loadImage("../data/img/mamie.png");
+    //Localisation des frames de la mamie dans le fichier JSON.
+    frames = spritedata.getJSONArray("mamieFrames");
+    speed = 1;
+    len = frames.size() - 1;
+    imageMode(CENTER);
+    for (int i = 0; i < frames.size(); i++) {
       JSONObject frame = frames.getJSONObject(i);
       //Va chercher les valeurs de position dans le array.
       JSONObject pos = frame.getJSONObject("position");
@@ -53,60 +53,56 @@ Mamie()
       //On ajoute les valeurs à l'aimation.
       animation.add(img);
     }
- }
- void update()
- {
-   if(frameCount % 12 == 0)
-   {
-     if(index < len)
-     {
-       index += speed;
-     }
-     else
-     {
-       index = 0;
-     }
-   }
-   this.velocity.add(this.acceleration);
-   this.position.add(this.velocity);
-   this.acceleration.set(0,0);
-  
- }
- void applyForce(PVector force)
- {
-   this.acceleration.add(force);
- }
- void jump()
- { 
-   if(gameStatus == 1)
-   {
-     PVector jumpY = new PVector(0,-10);
-     applyForce(jumpY);
-     jump_sound.play();
-   }
- }
- void display()
- {
-   fill(255);
-   stroke(255); 
-   image(animation.get(index), this.position.x, this.position.y-this.size.y,this.size.x, this.size.y);
-   if(contact == 1)
-   {
-     filter(BLUR, 2);
-     if(frameCount % 10 == 0)
-     {
-       contact =0;
-     }
-   }
- }
- void edges()
- {
-   if(this.position.y > height)
-   {
-     this.velocity.y *=0;
-     this.position.y =height;
-   }
- 
- }
-
+  }
+  void update()
+  {
+    if (frameCount % 12 == 0)
+    {
+      if (index < len)
+      {
+        index += speed;
+      } else
+      {
+        index = 0;
+      }
+    }
+    this.velocity.add(this.acceleration);
+    this.position.add(this.velocity);
+    this.acceleration.set(0, 0);
+  }
+  void applyForce(PVector force)
+  {
+    this.acceleration.add(force);
+  }
+  void jump()
+  { 
+    if (gameStatus == 1)
+    {
+      PVector jumpY = new PVector(0, -10);
+      applyForce(jumpY);
+      jump_sound.play();
+    }
+  }
+  void display()
+  {
+    fill(255);
+    stroke(255); 
+    image(animation.get(index), this.position.x, this.position.y-this.size.y, this.size.x, this.size.y);
+    if (contact == 1)
+    {
+      filter(BLUR, 2);
+      if (frameCount % 10 == 0)
+      {
+        contact =0;
+      }
+    }
+  }
+  void edges()
+  {
+    if (this.position.y > height)
+    {
+      this.velocity.y *=0;
+      this.position.y =height;
+    }
+  }
 }

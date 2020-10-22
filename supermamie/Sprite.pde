@@ -19,10 +19,5 @@ class Sprite {
 
   void animate() {
     index += speed;
-    //x += speed * 15;
-    //boucle if pour retourner la mamie au point de départ.
-    /*if (x > width) {
-      x = -w;
-    }*/
   }
 }

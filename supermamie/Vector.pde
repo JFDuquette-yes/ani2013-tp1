@@ -48,8 +48,7 @@ class Vector
       x = random(0.0f, 1.0f) * rangeX - rangeX / 2.0f;
       y = random(0.0f, 1.0f) * rangeY - rangeY / 2.0f;
       z = random(0.0f, 1.0f) * rangeZ - rangeZ / 2.0f;
-    }
-    else
+    } else
     {
       x = random(0.0f, 1.0f) * rangeX;
       y = random(0.0f, 1.0f) * rangeY;

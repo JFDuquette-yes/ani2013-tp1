@@ -1,14 +1,14 @@
 class Cellules
 {
   Mamie mamie;
-  
+
   PVector position;
   PVector size;
   PVector vitesse;
-  
+
   int type;
   int nb = 10;
-  
+
   Cellules()
   {   
     init();
@@ -20,12 +20,12 @@ class Cellules
   }
   void init()
   {
-     float positionXCal = mamie.position.x + width;
-     this.position = new PVector(positionXCal, height - random(100,150));
-     this.vitesse = new PVector(-0.5,0);
-     this.size = new PVector(0,0);
+    float positionXCal = mamie.position.x + width;
+    this.position = new PVector(positionXCal, height - random(100, 150));
+    this.vitesse = new PVector(-0.5, 0);
+    this.size = new PVector(0, 0);
   }
-  void show(){
+  void show() {
     //Dessin de la cellule de covid.
     rectMode(CORNER);
     noStroke();
@@ -145,36 +145,31 @@ class Cellules
     rect(position.x + 18, position.y + 16, size.x + 3, size.y + 7);
     rect(position.x + 16, position.y + 18, size.x + 7, size.y + 3);
     rect(position.x + 17, position.y + 17, size.x + 5, size.y + 5);
-    
-    
   }
-  void update(){
-    
+  void update() {
+
     this.position.add(this.vitesse);
   }
   //fonction pour capturer le contact des cellules sur mamie
   boolean contact()
   {
-    if(this.position.x > mamie.position.x && this.position.x < mamie.position.x + mamie.size.x - 50 && this.position.y < mamie.position.y && this.position.y > mamie.position.y - mamie.size.y)
+    if (this.position.x > mamie.position.x && this.position.x < mamie.position.x + mamie.size.x - 50 && this.position.y < mamie.position.y && this.position.y > mamie.position.y - mamie.size.y)
     {
       contact = 1;
       hit_sound.play();
       life--;
       return true;
-    }
-    else
+    } else
     {
       return false;
-    }    
+    }
   }
   boolean offscreen()
   {
-    if(this.position.x < mamie.position.x - 250 )
+    if (this.position.x < mamie.position.x - 250 )
     {
-      println("Atteint edges");
       return true;
-    }
-    else
+    } else
     {
       return false;
     }
