@@ -80,9 +80,9 @@ void setup()
   jump_sound = new SoundFile(this, "../data/sounds/jump.wav"); 
   hit_sound =  new SoundFile(this, "../data/sounds/hit.wav");
 
-  music_list[0] = minim.loadFile("../data/sounds/intro_jungle.mp3");
-  music_list[1] = minim.loadFile("../data/sounds/main_theme.mp3");
-  music_list[2] = minim.loadFile("../data/sounds/death_theme.mp3");
+  music_list[0] = minim.loadFile("../data/sounds/Intro_Theme.mp3");
+  music_list[1] = minim.loadFile("../data/sounds/Main_Theme.mp3");
+  music_list[2] = minim.loadFile("../data/sounds/Death_Theme.mp3");
   music_list[3] = minim.loadFile("../data/sounds/win.mp3");
 
   // Instanciation de la font
